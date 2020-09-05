@@ -10,3 +10,6 @@
 ##### 2020.09.05
 
 - init project
+- connect to domain "unchae.com"
+- ssl
+- print hello world
