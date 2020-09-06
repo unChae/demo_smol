@@ -6,6 +6,7 @@
 - modules
     - nodemon -g
     - express
+    - axios
 
 ##### 2020.09.05
 
@@ -13,3 +14,7 @@
 - connect to domain "unchae.com"
 - ssl
 - print hello world
+
+##### 2020.09.06
+
+- work in get access_token process

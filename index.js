@@ -33,6 +33,11 @@ httpsServer.listen(443, () => {
 app.use(express.static('public'));
 
 // 라우팅
+const router = express.Router();
+
+const authRouter = require('./router/auth')(router);
+app.use('/auth', authRouter);
+
 app.get("/", (req, res) => {
     res.send("Hello world~!");
 })
