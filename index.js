@@ -1,6 +1,12 @@
 /* 모듈 호출 */
 const express = require('express');
 const app = express();
+const cors = require('cors');
+
+require('dotenv').config();
+
+// CORS 설정
+app.use(cors());
 
 /* 서버 구동 */
 const fs = require('fs');

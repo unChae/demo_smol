@@ -6,7 +6,9 @@
 - modules
     - nodemon -g
     - express
-    - axios
+    - ~~~axios~~~ uninstall
+    - cors
+    - dotenv
 
 ##### 2020.09.05
 
