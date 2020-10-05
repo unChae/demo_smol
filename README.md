@@ -9,6 +9,8 @@
     - ~~~axios~~~ uninstall
     - cors
     - dotenv
+    - passport
+    - passport-facebook
 
 ##### 2020.09.05
 

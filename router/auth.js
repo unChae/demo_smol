@@ -1,9 +1,11 @@
+const api = require("../api/auth");
 module.exports = (router) => {
     
-    router.get('/callback', (req, res) => {
-        let {code} = req.query
-        res.redirect("http://114.206.236.28:3000/viewInstagram?code=" + code);
-    });
-
+    // 휴대폰 인증
+    router.post('/certification', api.certification);
+    
+    // 회원가입
+    router.post('/regist', api.regist);
+    
     return router;
 };

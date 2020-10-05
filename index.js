@@ -2,11 +2,26 @@
 const express = require('express');
 const app = express();
 const cors = require('cors');
+const bodyParser = require('body-parser');
 
+
+
+/* 모듈 설정 */
+app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({ extended: false }));
 require('dotenv').config();
 
-// CORS 설정
 app.use(cors());
+
+/* 데이터베이스 연결 */
+const models = require("./models/index.js");
+
+models.sequelize.sync().then( () => {
+	console.log("DB connect");
+}).catch(err => {
+	console.log("DB connect fail");
+	console.log(err);
+});
 
 /* 서버 구동 */
 const fs = require('fs');
