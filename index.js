@@ -4,8 +4,6 @@ const app = express();
 const cors = require('cors');
 const bodyParser = require('body-parser');
 
-
-
 /* 모듈 설정 */
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
@@ -26,29 +24,30 @@ models.sequelize.sync().then( () => {
 /* 서버 구동 */
 const fs = require('fs');
 const http = require('http');
-const https = require('https');
+const drive = require('./router/drive.js');
+// const https = require('https');
 
-// 인증서 호출
-const privateKey = fs.readFileSync('/etc/letsencrypt/live/unchae.com/privkey.pem', 'utf8');
-const certificate = fs.readFileSync('/etc/letsencrypt/live/unchae.com/cert.pem', 'utf8');
-const ca = fs.readFileSync('/etc/letsencrypt/live/unchae.com/chain.pem', 'utf8');
+// // 인증서 호출
+// const privateKey = fs.readFileSync('/etc/letsencrypt/live/unchae.com/privkey.pem', 'utf8');
+// const certificate = fs.readFileSync('/etc/letsencrypt/live/unchae.com/cert.pem', 'utf8');
+// const ca = fs.readFileSync('/etc/letsencrypt/live/unchae.com/chain.pem', 'utf8');
 
-const credentials = {
-	key: privateKey,
-	cert: certificate,
-	ca: ca
-};
+// const credentials = {
+// 	key: privateKey,
+// 	cert: certificate,
+// 	ca: ca
+// };
 
 const httpServer = http.createServer(app);
-const httpsServer = https.createServer(credentials, app);
+// const httpsServer = https.createServer(credentials, app);
 
 httpServer.listen(80, () => {
 	console.log('HTTP Server running on port 80');
 });
 
-httpsServer.listen(443, () => {
-	console.log('HTTPS Server running on port 443');
-});
+// httpsServer.listen(443, () => {
+// 	console.log('HTTPS Server running on port 443');
+// });
 
 // use static folder
 app.use(express.static('public'));
@@ -58,6 +57,9 @@ const router = express.Router();
 
 const authRouter = require('./router/auth')(router);
 app.use('/auth', authRouter);
+
+const driveRouter = require('./router/drive')(router);
+app.use('/drive', driveRouter);
 
 app.get("/", (req, res) => {
     res.send("Hello world~!");

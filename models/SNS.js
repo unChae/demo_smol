@@ -3,7 +3,8 @@ module.exports = (sequelize, DataTypes) => {
         sn_id: {
             type: DataTypes.INTEGER,
             allowNull: false, 
-            primaryKey: true
+            primaryKey: true,
+            autoIncrement: true,
         }, 
         sn_name: { 
             type: DataTypes.STRING(100), 

@@ -3,7 +3,8 @@ module.exports = (sequelize, DataTypes) => {
         co_id: {
             type: DataTypes.INTEGER,
             allowNull: false, 
-            primaryKey: true
+            primaryKey: true,
+            autoIncrement: true
         }, 
         co_us_id: { 
             type: DataTypes.INTEGER
