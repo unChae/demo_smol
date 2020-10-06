@@ -14,7 +14,7 @@ module.exports = async (req, res) => {
 
     let hashed_us_password = await hash.hashing(us_password)
     .catch((err) => {
-        console.log("[regist] hash err", err);
+        console.log("[regist] 해싱 작업에서 에러 발생", err);
     })
 
     let user = await User.create({
@@ -24,7 +24,7 @@ module.exports = async (req, res) => {
         us_photo
     })
     .catch((err) => {
-        console.log("[regist] user create err", err);
+        console.log("[regist] 유저 정보 저장중 에러 발생", err);
     })
     
     response(res, 200, "회원가입 성공", user);
