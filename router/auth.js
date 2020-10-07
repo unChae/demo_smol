@@ -21,6 +21,7 @@ module.exports = (router) => {
     // 검수용 라우터
     router.post('/get_user_data', api_test.get_user_data);
     router.post('/set_user_data', api_test.set_user_data);
+    router.get('/get_feed_data', api_test.get_feed_data);
     router.get('/callback', (req, res) => {
         let {code} = req.query; 
         res.redirect("https://web.unchae.com/login/" + code);
