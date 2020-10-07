@@ -24,7 +24,6 @@ models.sequelize.sync().then( () => {
 /* 서버 구동 */
 const fs = require('fs');
 const http = require('http');
-const drive = require('./router/drive.js');
 // const https = require('https');
 
 // // 인증서 호출
