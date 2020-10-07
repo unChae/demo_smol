@@ -1,6 +1,7 @@
 /* 모듈 호출 */
 const express = require('express');
 const session = require('express-session');
+
 const app = express();
 const cors = require('cors');
 const bodyParser = require('body-parser');
@@ -18,30 +19,29 @@ models.sequelize.sync().then( () => {
 /* 서버 구동 */
 const fs = require('fs');
 const http = require('http');
-// const https = require('https');
-
+const https = require('https');
 
 // // 인증서 호출
-// const privateKey = fs.readFileSync('/etc/letsencrypt/live/unchae.com/privkey.pem', 'utf8');
-// const certificate = fs.readFileSync('/etc/letsencrypt/live/unchae.com/cert.pem', 'utf8');
-// const ca = fs.readFileSync('/etc/letsencrypt/live/unchae.com/chain.pem', 'utf8');
+const privateKey = fs.readFileSync('/etc/letsencrypt/live/unchae.com/privkey.pem', 'utf8');
+const certificate = fs.readFileSync('/etc/letsencrypt/live/unchae.com/cert.pem', 'utf8');
+const ca = fs.readFileSync('/etc/letsencrypt/live/unchae.com/chain.pem', 'utf8');
 
-// const credentials = {
-// 	key: privateKey,
-// 	cert: certificate,
-// 	ca: ca
-// };
+const credentials = {
+	key: privateKey,
+	cert: certificate,
+	ca: ca
+};
 
 const httpServer = http.createServer(app);
-// const httpsServer = https.createServer(credentials, app);
+const httpsServer = https.createServer(credentials, app);
 
 httpServer.listen(80, () => {
 	console.log('HTTP Server running on port 80');
 });
 
-// httpsServer.listen(443, () => {
-// 	console.log('HTTPS Server running on port 443');
-// });
+httpsServer.listen(443, () => {
+	console.log('HTTPS Server running on port 443');
+});
 
 /* 모듈 설정 */
 
@@ -54,13 +54,13 @@ app.use(express.static('public'));
 app.use(cors());
 // dotenv
 require('dotenv').config();
-// session
+//expression
 app.use(session({
-	secret: 'smolsecrete123!',
-	resave: true,
-	saveUninitialized: true,
-	cookie: {
-		maxAge: 1000*60*3
+	secret: '12sdfwerwersdfserwerwe',
+	resave:true,
+	saveUninitialized : true,
+	cookie : {
+		maxAge : 1000*60*3
 	}
 }));
 
