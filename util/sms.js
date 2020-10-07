@@ -13,23 +13,29 @@ const sns = new AWS.SNS();
 const random = require("./random");
 
 var us_phone_number = null;
+var number = null;
 
 module.exports = {
-    set_us_phone_number: (us_phone_number) => {
-        this.us_phone_number = us_phone_number;
+    set_us_phone_number: (_us_phone_number) => {
+        us_phone_number = _us_phone_number;
+    },
+    get_number: () => {
+        return number;
     },
     send_sms: () => {
         console.log("+82" + this.us_phone_number)
-        let random_number = random.number(1000,9999);
+        let _number = random.number(1000,9999);
+        
         sns.publish({
-            Message: String(random_number),
+            Message: String(_number),
             Subject: "SMOL",
-            PhoneNumber: "+82" + this.us_phone_number
+            PhoneNumber: "+82" + us_phone_number
         }, (err, result) => {
             if(err)
                 console.log(err);
             else
                 console.log(result);
         })
+        number = _number;
     }
 }

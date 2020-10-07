@@ -1,15 +1,9 @@
 /* 모듈 호출 */
 const express = require('express');
+const session = require('express-session');
 const app = express();
 const cors = require('cors');
 const bodyParser = require('body-parser');
-
-/* 모듈 설정 */
-app.use(bodyParser.json());
-app.use(bodyParser.urlencoded({ extended: false }));
-require('dotenv').config();
-
-app.use(cors());
 
 /* 데이터베이스 연결 */
 const models = require("./models/index.js");
@@ -25,6 +19,7 @@ models.sequelize.sync().then( () => {
 const fs = require('fs');
 const http = require('http');
 // const https = require('https');
+
 
 // // 인증서 호출
 // const privateKey = fs.readFileSync('/etc/letsencrypt/live/unchae.com/privkey.pem', 'utf8');
@@ -48,8 +43,26 @@ httpServer.listen(80, () => {
 // 	console.log('HTTPS Server running on port 443');
 // });
 
+/* 모듈 설정 */
+
+// body-paerser
+app.use(bodyParser.urlencoded({ extended: false }));
+app.use(bodyParser.json());
 // use static folder
 app.use(express.static('public'));
+// cors
+app.use(cors());
+// dotenv
+require('dotenv').config();
+// session
+app.use(session({
+	secret: 'smolsecrete123!',
+	resave: true,
+	saveUninitialized: true,
+	cookie: {
+		maxAge: 1000*60*3
+	}
+}));
 
 // 라우팅
 const router = express.Router();
@@ -61,5 +74,10 @@ const driveRouter = require('./router/drive')(router);
 app.use('/drive', driveRouter);
 
 app.get("/", (req, res) => {
-    res.send("Hello world~!");
+    let response_data = {
+        status:200,
+        message:"Hello world!",
+        data:null
+    }
+    res.status(200).json(response_data);
 })
