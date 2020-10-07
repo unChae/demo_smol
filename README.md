@@ -58,6 +58,5 @@
         - send_sms return 제거
     - console.log와 response반환 메시지 통일
     - number_certification 변수 이름 수정
-    - branch test
 
 
