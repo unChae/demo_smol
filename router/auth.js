@@ -15,12 +15,6 @@ module.exports = (router) => {
     
     // 비밀번호 변경
     router.post('/update_password', api.update_password);
-    
-    // 검수용 라우터
-    router.get('/callback', (req, res) => {
-        let {code} = req.query; 
-        res.redirect("https://web.unchae.com/login/" + code);
-    });
 
     return router;
 };
