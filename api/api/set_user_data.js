@@ -34,5 +34,5 @@ module.exports = async (req, res) => {
             response(res, 500, "[set_user_data] 데이터베이스 오류 발생.", err);
         })
     }
-    response(res, 200, true, "[set_user_data] 이미 존재하는 계정입니다.", null);
+    response(res, 200, "[set_user_data] 이미 존재하는 계정입니다.", null);
 }
