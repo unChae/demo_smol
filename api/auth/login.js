@@ -10,7 +10,8 @@ const token = require('../../util/token');
 
 module.exports = async (req, res) => {
     let {us_phone_number, us_password} = req.body;
-
+    console.log(req.body);
+    
     let user = await User.findOne({
         raw: true,
         where: {us_phone_number}
