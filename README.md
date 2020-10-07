@@ -21,6 +21,7 @@
     - 백업, storage 관련
         - aws-sdk
         - request
+        - node-fetch
     
 - **코드 작성 요청 사항**
     - , 뒤에는 띄어쓰기
