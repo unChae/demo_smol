@@ -21,6 +21,7 @@ module.exports = {
     send_sms: () => {
         console.log("+82" + this.us_phone_number)
         let random_number = random.number(1000,9999);
+        
         sns.publish({
             Message: String(random_number),
             Subject: "SMOL",
@@ -31,5 +32,11 @@ module.exports = {
             else
                 console.log(result);
         })
+        return random_number;
+        
+        
+        
+        
+        
     }
 }

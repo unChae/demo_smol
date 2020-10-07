@@ -1,3 +1,4 @@
+
 // models
 const model = require('../../models');
 const User = model.User;
@@ -14,13 +15,12 @@ module.exports = async (req, res) => {
         raw: true,
         where: {us_phone_number}
     })
-
+    
     if(user == null){
         response(res, 409, "[login] 사용자 정보 없음", null);
     }
 
     let compare = await hash.compare(us_password, user.us_password);
-
     if(compare) {
         var _token = token(user);
 

@@ -10,5 +10,8 @@ module.exports = (router) => {
     // 로그인
     router.post('/login', api.login);
     
+    // 인증번호 확인
+    router.post('/num_certification', api.num_certification);
+    
     return router;
 };

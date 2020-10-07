@@ -22,3 +22,15 @@
 ##### 2020.09.06
 
 - work in get access_token process
+- 
+
+
+##### 2020.10.06
+
+- express-session
+- login reduplication prevent
+- random number session
+- certification number certify
+
+
+
