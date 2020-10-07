@@ -18,8 +18,8 @@ module.exports = async (req, res) => {
 
 async function instagram(res) {
     let image_url = "https://pbs.twimg.com/media/D0AEcLJVYAErhXl.jpg"
-    let base64 = await image.get_base64(image_url);
-    image.s3_upload(base64);
+    await image.set_base64(image_url);
+    image.s3_upload();
     // image.s3_upload("https://pbs.twimg.com/media/D0AEcLJVYAErhXl.jpg");
     // let url = "https://api.instagram.com/oauth/authorize?client_id=" + process.env.INSTAGRAM_CLIENT_ID + "&redirect_uri=" + process.env.INSTAGRAM_REDIRECT_URI + "&scope=user_profile,user_media&response_type=code";
     // res.redirect(url);
@@ -33,4 +33,5 @@ async function instagram(res) {
         7. 데이터베이스에 데이터 저장
         8. 저장된 데이터 담아서 반환
     */ 
+    response(res, 200, "[backup] 이미지 업로드 완료.", null)
 }
