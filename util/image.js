@@ -8,9 +8,11 @@ const s3 = new AWS.S3({
     region : 'ap-northeast-2'
 });
 
+var base64 = null;
+
 module.exports = {
-    get_base64: async (uri) => {
-        return await new Promise((resolve, reject) => {
+    set_base64: async (uri) => {
+        base64 = await new Promise((resolve, reject) => {
             request.get(uri, function (err, res, body) {
                 if (!err && res.statusCode == 200) {
                     let data = "data:" + res.headers["content-type"] + ";base64," + Buffer.from(body).toString('base64');
@@ -21,11 +23,11 @@ module.exports = {
             })
         })
     },
-    s3_upload: (base64) => {
+    s3_upload: () => {
         let buffer = Buffer.from(base64.replace(/^data:image\/\w+;base64,/, ""),'base64')
         let param = {
             'Bucket': process.env.AWS_S3_BUCKET,
-            'Key': 'image/' + 'logo.png',
+            'Key': 'image/' + 'logo3.png',
             'ACL': 'public-read',
             'Body': buffer,
             'ContentEncoding': 'base64',
