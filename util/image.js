@@ -11,9 +11,9 @@ const s3 = new AWS.S3({
 module.exports = {
     get_base64: async (uri) => {
         return await new Promise((resolve, reject) => {
-            request.get(uri, function (error, response, body) {
-                if (!error && response.statusCode == 200) {
-                    let data = "data:" + response.headers["content-type"] + ";base64," + Buffer.from(body).toString('base64');
+            request.get(uri, function (err, res, body) {
+                if (!err && res.statusCode == 200) {
+                    let data = "data:" + res.headers["content-type"] + ";base64," + Buffer.from(body).toString('base64');
                     resolve(data);
                 } else {
                     return reject(err);

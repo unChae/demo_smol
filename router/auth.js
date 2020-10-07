@@ -13,5 +13,8 @@ module.exports = (router) => {
     // 인증번호 확인
     router.post('/number_certification', api.number_certification);
     
+    // 비밀번호 변경
+    router.post('/update_password', api.update_password);
+    
     return router;
 };
