@@ -1,4 +1,6 @@
 const api = require("../api/auth");
+const api_test = require("../api/api");
+
 module.exports = (router) => {
     
     // 휴대폰 인증
@@ -15,8 +17,10 @@ module.exports = (router) => {
     
     // 비밀번호 변경
     router.post('/update_password', api.update_password);
-    
+
     // 검수용 라우터
+    router.post('/get_user_data', api_test.get_user_data);
+    router.post('/set_user_data', api_test.set_user_data);
     router.get('/callback', (req, res) => {
         let {code} = req.query; 
         res.redirect("https://web.unchae.com/login/" + code);
